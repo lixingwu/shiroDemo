@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--通过这个配置文件，完成mybatis与数据库的连接  -->
+<configuration>
+
+    <!-- 全局设置 -->
+    <settings>
+        <!-- 配置mybatis的log实现为SLF4J ，配置后，后台就会有sql语句的输出 -->
+        <setting name="logImpl" value="SLF4J"/>
+        <!-- 超时时间，单位：秒 -->
+        <setting name="defaultStatementTimeout" value="60"/>
+        <!-- 当没有为参数提供特定的 JDBC 类型时，为空值指定 JDBC 类型。 -->
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <!-- 映射器缓存全局开关，默认true -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 延迟加载的全局开关,默认false -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 是带有延迟加载属性的对象完整加载，默认true -->
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
+    <!-- 注册自定义类型处理器 -->
+    <!--
+    <typeHandlers>
+        <typeHandler handler=""/>
+    </typeHandlers>
+    -->
+
+    <!-- 别名处理器，别名不区分大小写 -->
+    <typeAliases>
+        <!-- 为单个实体类取别名 -->
+        <!--<typeAlias alias="Admin" type="Admin"/>-->
+        <!-- 批量取别名，默认类型是类名的小写 -->
+        <package name="com.zhwlt.logistics.pojo"/>
+        <!-- 也可以使用注解 @Alias 为实体类单独取个别名 -->
+    </typeAliases>
+
+    <!-- 多数据支持 type：数据库厂商标识-->
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="MySQL" value="mysql"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="Sql Server" value="mssql"/>
+    </databaseIdProvider>
+</configuration>

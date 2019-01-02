@@ -1,0 +1,76 @@
+server:
+  port: 8180
+
+spring:
+
+  #上传附件配置
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/shiro_test?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,log4j
+    logSlowSql: true
+
+  # redis 缓存服务器配置
+  redis:
+    # 服务地址
+    host: 127.0.0.1
+    # 务端口
+    port: 6379
+    # 登录密码
+    password: Redis_kmzx@1234
+    # 超时时间
+    timeout: 1000
+    jedis:
+      pool:
+        # 最大空闲数
+        max-idle: 100
+        # 一个pool可分配多少个jedis实例
+        max-active: 100
+        # 最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
+        max-wait: 1000
+
+
+  # cache 缓存使用ehcache
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*/*.xml
+  type-aliases-package: com.example.shirodemo.pojo
+
+#打印sql
+logging:
+  level:
+     com.zhwlt.logistics: debug
+  file: /opt/logs/shiro/log.log
+
+# 自定义属性
+custom:
+  sysName: 权限管理
+  sysVersion: 0.0.1
+  createTime: 2018-12-06 22:27
+  copyright: lixingwu@aliyun.com
+
