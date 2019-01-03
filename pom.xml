@@ -133,27 +133,6 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
-        <!--easypoi Excel操作-->
-        <!--easypoi Excel自适应xls和xlsx两种格式,word只支持docx模式-->
-        <!--easypoi-base  导入导出的工具包,可以完成Excel导出,导入,Word的导出,Excel的导出功能-->
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-base</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-        <!--easypoi-web 耦合了spring-mvc 基于AbstractView,极大的简化spring-mvc下的导出功能-->
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-web</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-        <!--easypoi 基础注解包,作用与实体对象上,拆分后方便maven多工程的依赖管理-->
-        <dependency>
-            <groupId>cn.afterturn</groupId>
-            <artifactId>easypoi-annotation</artifactId>
-            <version>3.3.0</version>
-        </dependency>
-
         <!-- Apache Commons FileUpload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -218,34 +197,12 @@
             <version>1.1.0</version>
         </dependency>
 
-        <!--引入消息模板推送依赖包 HttpUtil-->
+        <!-- 工具包 hutool，文档：http://hutool.mydoc.io/ -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.1.13</version>
+            <version>4.3.2</version>
         </dependency>
-
-        <!-- 引入支付接口的依赖项 begin -->
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20090211</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
-            <version>1.54</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-core -->
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- 引入支付接口的依赖项 end -->
 
         <!-- kafka 流处理器 begin-->
         <dependency>
