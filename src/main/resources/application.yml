@@ -39,7 +39,7 @@ spring:
     # 登录密码
     password: Redis_kmzx@1234
     # 超时时间
-    timeout: 1000
+    timeout: 1800
     jedis:
       pool:
         # 最大空闲数

@@ -24,6 +24,32 @@ public class RedisUtils {
     private RedisTemplate<String, Object> redisTemplate;
 
     /**
+     * 方法描述：返回 RedisTemplate .
+     * 创建时间：2019-01-09 17:35:45
+     *
+     * @return the redis template
+     * @author "lixingwu"
+     */
+    public RedisTemplate<String, Object> getRedisTemplate() {
+        return redisTemplate;
+    }
+
+    /**
+     * 方法描述：获取指定规则的key集合.
+     * 创建时间：2019-01-09 17:32:24
+     *
+     * @return the set
+     * @author "lixingwu"
+     */
+    public Set<String> keys(String pattern) {
+        if (null == pattern || "".equals(pattern)) {
+            return redisTemplate.keys("*");
+        } else {
+            return redisTemplate.keys(pattern);
+        }
+    }
+
+    /**
      * 指定缓存失效时间
      *
      * @param key  键
