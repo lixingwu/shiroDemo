@@ -2,6 +2,9 @@ package com.example.shirodemo.config;
 
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.example.shirodemo.config.component.FastJson2JsonRedisSerializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -9,32 +12,33 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * RedisConfig Redis 配置类
+ * Redis配置类
  *
  * @author lixingwu
  */
 @Configuration
-public class RedisConfig {
+@EnableCaching
+public class RedisConfig extends CachingConfigurerSupport {
 
-    @Bean
-    @SuppressWarnings("all")
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<>();
-        template.setConnectionFactory(factory);
-
+    @Bean(name = "redisTemplate")
+    @SuppressWarnings("unchecked")
+    @ConditionalOnMissingBean(name = "redisTemplate")
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         // 添加autotype白名单
         ParserConfig.getGlobalInstance().addAccept("com.taobao.pac.client.sdk.dataobject.");
         // 打开autotype功能
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
-
-        //使用Fastjson2JsonRedisSerializer来序列化和反序列化redis的value值 by zhengkai
-        FastJson2JsonRedisSerializer serializer = new FastJson2JsonRedisSerializer(Object.class);
-
-        template.setValueSerializer(serializer);
-        //使用StringRedisSerializer来序列化和反序列化redis的key值
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        //使用fastjson序列化
+        FastJson2JsonRedisSerializer fastJsonRedisSerializer =
+                new FastJson2JsonRedisSerializer(Object.class);
+        // value值的序列化采用fastJsonRedisSerializer
+        template.setValueSerializer(fastJsonRedisSerializer);
+        template.setHashValueSerializer(fastJsonRedisSerializer);
+        // key的序列化采用StringRedisSerializer
         template.setKeySerializer(new StringRedisSerializer());
-        template.afterPropertiesSet();
+        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setConnectionFactory(redisConnectionFactory);
         return template;
     }
-
 }

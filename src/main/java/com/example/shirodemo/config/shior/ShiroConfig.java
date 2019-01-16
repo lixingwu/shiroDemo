@@ -50,6 +50,7 @@ public class ShiroConfig {
         filterMap.put("/druid/**", "anon");
         filterMap.put("/static/**", "anon");
         filterMap.put("/login", "anon");
+        filterMap.put("/sysInfo", "anon");
         filterMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
 
@@ -134,9 +135,7 @@ public class ShiroConfig {
      */
     @Bean
     public RedisSessionDAO redisSessionDAO() {
-        RedisSessionDAO sessionDAO = new RedisSessionDAO();
-        sessionDAO.setRedisManager(redisUtils);
-        return sessionDAO;
+        return new RedisSessionDAO();
     }
 
     /**
