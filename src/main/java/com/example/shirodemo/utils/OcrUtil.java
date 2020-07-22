@@ -13,8 +13,8 @@ import java.io.File;
  */
 public class OcrUtil {
     private static final String APP_ID = "1252304661";
-    private static final String SECRET_ID = "AKIDLPvIWdcakYK0W6GKwGTl5JNGxY0edhx4";
-    private static final String SECRET_KEY = "9XAk9cw5MuRtGXfcS7fyJZgeR4l8X97l";
+    private static final String SECRET_ID = "**";
+    private static final String SECRET_KEY = "**";
     private static final String BUCKET_NAME = "lg-28a1vt9i-1252304661";
     private static final ImageClient IMAGECLIENT = new ImageClient(APP_ID, SECRET_ID, SECRET_KEY, ImageClient.NEW_DOMAIN_recognition_image_myqcloud_com);
 
